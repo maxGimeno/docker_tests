@@ -8,18 +8,12 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    steps:
-      - name: install dependencies
-        run: | 
-          if [ "${{ secrets.SECRET_FROM_MASTER }}" = "COUCOU" ]; then
-            echo "I think it works."
-          fi
-          
-          
+    steps:      
       - uses: actions/github-script@v3
         id: check
         with:
          script: |
+           console.log(context.user)
             const body = context.payload.comment.body
             if(body.includes("build:")) {
               console.log(body.replace('build:',''))
