@@ -1,7 +1,6 @@
 name: Spy
 
 on:
-  pull_request_target
   issue_comment:
       types: [created]
 
