@@ -9,12 +9,19 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/github-script@v3
-      id: check
-      with:
-       script: |
-          const body = context.payload.comment.body
-          if(body.includes("build:")) {
-            console.log(body.replace('build:',''))
-          }
+      - name: install dependencies
+          run: | 
+          if [ -n "${{ secrets.SECRET_FROM_MASTER }}" ]; then
+            echo "I think it works."
+          fi
+          
+          
+      - uses: actions/github-script@v3
+        id: check
+        with:
+         script: |
+            const body = context.payload.comment.body
+            if(body.includes("build:")) {
+              console.log(body.replace('build:',''))
+            }
           
