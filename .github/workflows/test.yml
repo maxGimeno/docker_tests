@@ -3,6 +3,8 @@ name: Spy
 on:
   pull_request_target:
     types: [edited]
+  issue_comment:
+    types: [created]
 
 jobs:
   build:
