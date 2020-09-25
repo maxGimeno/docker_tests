@@ -35,5 +35,5 @@ jobs:
         name: "checkout branch"
         if: steps.get_pr_branch.outputs.result != 'stop'
         with:
-          repository: ${{ steps.get_pr_branch.outputs.result }}.replace(/.*:.*/,'$1')
-          ref: ${{ steps.get_pr_branch.outputs.result }}.replace(/.*:.*/,'$2')
+          repository: maxGimeno/docker_tests
+          ref: ${{ steps.get_pr_branch.outputs.result }}
