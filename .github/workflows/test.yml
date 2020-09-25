@@ -21,6 +21,6 @@ jobs:
                //get pullrequest url
                const url = context.payload.issue.pull_request.url
                //get upstream branch
-               console.log(github.pulls.8)               
+               console.log(github.pulls.get(8))
              }
            }
