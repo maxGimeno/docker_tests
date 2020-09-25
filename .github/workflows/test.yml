@@ -15,4 +15,6 @@ jobs:
       id: check
       with:
        script: |
-          console.log(context.payload)
+          console.log(context.payload.comment.body)
+          
+          
