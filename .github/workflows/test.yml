@@ -21,7 +21,7 @@ jobs:
                //get pullrequest url
                const url = context.payload.issue.pull_request.url
                //get upstream branch
-               const opts = await octokit.pulls.get({
+               const opts = await github.pulls.get({
                     owner: "maxGimeno",
                     repo: "docker_tests",
                     pull_number: 8,
