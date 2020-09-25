@@ -21,10 +21,11 @@ jobs:
                //get pullrequest url
                const url = context.payload.issue.pull_request.url
                //get upstream branch
-               const opts = github.pulls.listForRepo.endpoint.merge({
-              ...context.issue,
-              state: 'all'
-            })
+               const opts = await octokit.pulls.get({
+                    owner: "maxGimeno",
+                    repo: "docker_tests",
+                    pull_number: 8,
+               });
                console.log(opts)
              }
            }
