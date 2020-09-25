@@ -18,7 +18,9 @@ jobs:
              const body = context.payload.comment.body
              if(body.includes("build:")) {
                console.log(body.replace('build:',''))
+               //get pullrequest url
+               const url = github.event.issue.pull_request.url
+               //get upstream branch
+               console.log(github.pull_requests)               
              }
-           } else {
-             console.log("T'as pas les droits coco.")
            }
