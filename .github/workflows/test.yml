@@ -21,10 +21,8 @@ jobs:
                //get pullrequest url
                const url = context.payload.issue.pull_request.url
                //get upstream branch
-               const creator = context.payload.sender.login
-               const opts = github.issues.listForRepo.endpoint.merge({
+               const opts = github.pulls.listForRepo.endpoint.merge({
               ...context.issue,
-              creator,
               state: 'all'
             })
                console.log(opts)
