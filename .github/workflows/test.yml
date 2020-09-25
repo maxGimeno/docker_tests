@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: install dependencies
         run: | 
-          if [ -n "${{ secrets.SECRET_FROM_MASTER }}" ]; then
+          if [ "${{ secrets.SECRET_FROM_MASTER }}" = "COUCOU" ]; then
             echo "I think it works."
           fi
           
