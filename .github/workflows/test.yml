@@ -21,6 +21,11 @@ jobs:
                //get pullrequest url
                const url = context.payload.issue.pull_request.url
                //get upstream branch
-               console.log(github.pulls.get(maxGimeno, docker_tests))
+                const opts = github.issues.listForRepo.endpoint.merge({
+              ...context.issue,
+              creator,
+              state: 'all'
+            })
+               console.log(opts)
              }
            }
