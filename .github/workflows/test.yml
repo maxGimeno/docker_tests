@@ -10,8 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:      
       - uses: actions/github-script@v3
-        id: check
+        id: get_pr_branch
         with:
+         result-encoding: string
          script: |
            const asso = context.payload.comment.author_association
            if(asso == 'OWNER' || asso == 'COLLABORATOR') {
@@ -26,6 +27,11 @@ jobs:
                     repo: "docker_tests",
                     pull_number: pr_number,
                });
-               console.log(pr.data.head.label)
+               return pr.data.head.label
              }
            }
+           return 'stop'
+      - name: "echo branch"
+        if: steps.get_pr_branch.outputs.result != 'stop'
+        run: |
+          echo steps.get_pr_branch.outputs.result
