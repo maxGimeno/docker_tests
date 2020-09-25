@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: install dependencies
-          run: | 
+        run: | 
           if [ -n "${{ secrets.SECRET_FROM_MASTER }}" ]; then
             echo "I think it works."
           fi
