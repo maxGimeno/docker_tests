@@ -13,7 +13,21 @@ jobs:
         id: check
         with:
          script: |
-           console.log(context.payload)
+           const githubClient = new GitHub(githubToken)
+           const permissionRes = await githubClient.repos.getCollaboratorPermissionLevel(
+           {
+             owner: context.repo.owner,
+             repo: context.repo.repo,
+             username: context.actor
+           })
+           if (permissionRes.status !== 200) {
+            // eslint-disable-next-line no-console
+            console.error(
+             `Permission check returns non-200 status: ${permissionRes.status}`
+           )
+           } else {
+             console.log( `C'est bon mec, ça fait 200: ${permissionRes.status}`)
+           }
             const body = context.payload.comment.body
             if(body.includes("build:")) {
               console.log(body.replace('build:',''))
