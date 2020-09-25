@@ -34,4 +34,4 @@ jobs:
       - name: "echo branch"
         if: steps.get_pr_branch.outputs.result != 'stop'
         run: |
-          echo steps.get_pr_branch.outputs.result
+          echo {{ steps.get_pr_branch.outputs.result }}
