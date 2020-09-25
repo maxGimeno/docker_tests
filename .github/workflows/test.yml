@@ -13,7 +13,7 @@ jobs:
         id: check
         with:
          script: |
-           console.log(context.user)
+           console.log(context.payload.user)
             const body = context.payload.comment.body
             if(body.includes("build:")) {
               console.log(body.replace('build:',''))
