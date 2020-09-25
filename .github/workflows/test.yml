@@ -19,7 +19,7 @@ jobs:
              if(body.includes("build:")) {
                console.log(body.replace('build:',''))
                //get pullrequest url
-               const url = github.event.issue.pull_request.url
+               const url = event.issue.pull_request.url
                //get upstream branch
                console.log(github.pull_requests)               
              }
