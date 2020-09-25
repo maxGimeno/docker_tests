@@ -19,8 +19,7 @@ jobs:
              if(body.includes("build:")) {
                console.log(body.replace('build:',''))
                //get pullrequest url
-               console.log(context.payload.issue)
-               const pr_number = context.payload.issue.pull_request.number
+               const pr_number = context.payload.issue.number
                //get upstream branch
                const opts = await github.pulls.get({
                     owner: "maxGimeno",
