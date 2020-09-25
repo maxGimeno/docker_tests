@@ -31,7 +31,9 @@ jobs:
              }
            }
            return 'stop'
-      - name: "echo branch"
+      - uses: actions/checkout@v2
+        name: "checkout branch"
         if: steps.get_pr_branch.outputs.result != 'stop'
-        run: |
-          echo ${{ steps.get_pr_branch.outputs.result }}
+        with:
+          repository: ${{ steps.get_pr_branch.outputs.result }}.replace(/.*:.*/,'$1')
+          ref: ${{ steps.get_pr_branch.outputs.result }}.replace(/.*:.*/,'$2')
