@@ -15,6 +15,8 @@ jobs:
       id: check
       with:
        script: |
-          console.log(context.payload.comment.body)
-          
+          const body = context.payload.comment.body
+          if(body.includes("build:")) {
+            console.log(body.replace('build:',''))
+          }
           
