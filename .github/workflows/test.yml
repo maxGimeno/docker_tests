@@ -28,7 +28,7 @@ jobs:
                     pull_number: pr_number,
                });
                const result = pr.data.head.label
-               return result.replace(':', '/')
+               return result.replace('.*:', '')
              }
            }
            return 'stop'
