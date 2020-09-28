@@ -47,4 +47,16 @@ jobs:
           ref: ${{ steps.get_pr_branch.outputs.result }}
           token: ${{ secrets.TOKEN_FOR_CHECKOUT }}
           
+      - name: Post address
+        uses: actions/github-script@v3
+        if: steps.get_round.outputs.result != 'stop'
+        with:
+          script: |
+            const pr_number = context.payload.issue.number
+            github.issues.createComment(
+              owner: "maxGimeno",
+              repo: "docker_tests",
+              pull_number: pr_number,
+              body: "test"
+            });
       
