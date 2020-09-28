@@ -53,7 +53,7 @@ jobs:
         with:
           script: |
             const pr_number = context.payload.issue.number
-            github.issues.createComment(
+            github.issues.createComment({
               owner: "maxGimeno",
               repo: "docker_tests",
               pull_number: pr_number,
