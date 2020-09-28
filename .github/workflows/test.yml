@@ -38,3 +38,4 @@ jobs:
         with:
           repository: maxGimeno/docker_tests
           ref: ${{ steps.get_pr_branch.outputs.result }}
+          token: ${{ secrets.TOKEN_FOR_CHECKOUT }}
