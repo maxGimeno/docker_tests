@@ -32,6 +32,9 @@ jobs:
              }
            }
            return 'stop'
+      - name: "git branch pre checkout"
+        run: |
+          git branch
       - uses: actions/checkout@v2
         name: "checkout branch"
         if: steps.get_pr_branch.outputs.result != 'stop'
@@ -39,3 +42,7 @@ jobs:
           repository: maxGimeno/docker_tests
           ref: ${{ steps.get_pr_branch.outputs.result }}
           token: ${{ secrets.TOKEN_FOR_CHECKOUT }}
+          
+      - name: "git branch post checkout"
+        run: |
+          git branch
