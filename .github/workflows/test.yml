@@ -25,35 +25,21 @@ jobs:
 
       - uses: actions/github-script@v3
         if: steps.get_round.outputs.result != 'stop'
-        id: get_pr_branch
+        id: get_pr_number
         with:
          result-encoding: string
          script: |
            //get pullrequest url
            const pr_number = context.payload.issue.number
-           //get upstream branch
-           const pr = await github.pulls.get({
-                owner: "maxGimeno",
-                repo: "docker_tests",
-                pull_number: pr_number,
-           });
-           const result = pr.data.head.label
-           return result.replace(/(.*):(.*)/, '$2')
-      - uses: actions/checkout@v2
-        name: "checkout branch"
-        if: steps.get_round.outputs.result != 'stop'
-        with:
-          repository: maxGimeno/docker_tests
-          ref: ${{ steps.get_pr_branch.outputs.result }}
-          token: ${{ secrets.TOKEN_FOR_CHECKOUT }}
-          
+           return pr_number
+           
       - name: Post address
         uses: actions/github-script@v3
         if: steps.get_round.outputs.result != 'stop'
         with:
           script: |
             const pr_number = context.payload.issue.number
-            const address = "The documentation is built. You can find it here : https://cgal.github.io/${pr_number}/${{ steps.get_round.outputs.result }}/Manual/index.html"
+            const address = "The documentation is built. You can find it here : https://cgal.github.io/${{ steps.get_pr_number.outputs.result }}/${{ steps.get_round.outputs.result }}/Manual/index.html"
             github.issues.createComment({
               owner: "maxGimeno",
               repo: "docker_tests",
